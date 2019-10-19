@@ -1,5 +1,8 @@
 
+var minutes = 0;
+var seconds = 01;
 function startTime() {
-    console.log("Hello World");
-
+    document.getElementById("timer").innerHTML = minutes + ":" + seconds;
 }
+
+//function

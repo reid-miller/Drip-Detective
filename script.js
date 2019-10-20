@@ -106,6 +106,7 @@ var firebaseConfig = {
   
   var db = firebase.firestore();
 
+  // Create an account
   function createAccount(){
 
     var usernameTaken = false; // Will keep track if username is already taken
@@ -127,23 +128,49 @@ var firebaseConfig = {
   
         //Add user to database if user name is not taken
         if(usernameTaken == true) {
-            alert("Sorry username is ")
+            alert("Sorry username is taken")
         } else {
-
-        
         db.collection("users").doc("" + username).set({           
             Password: "" + password
         }).catch(function(error) {
             console.error("Error adding document: ", error);
         });
-        loginComplete();
+        loginComplete(); // Lets us know that user succesfully logged in
     }
         
-    } 
+    } else {
+        alert("Username or Password is invalid, only requirement is that each are at least one character long");
+    }
   };
 
 function login() {
-    
-    
-    loginComplete();
+    //Get username and password
+    var username = document.getElementById("username").value.toLowerCase().trim(); // Not case senstive
+    var password = document.getElementById("password").value.trim();
+  
+    //Check if username and password is valid (at least one char each) and username is not in use
+    if(username.length > 0 && password.length > 0) {
+       
+        var docRef = db.collection("users").doc(username);
+
+        docRef.get().then(function(doc) {
+            //Check if username is valid
+            if (doc.exists) {
+                //Check if password is correct
+                if(password == doc.data().Password) {
+                    loginComplete();
+                } else {
+                    alert("Password is incorrect");
+                }
+            } else {
+                // doc.data() will be undefined in this case
+                alert("Username does not exist!")
+            }
+        }).catch(function(error) {
+            console.log("Error getting document:", error);
+        });    
+    } else {
+        alert("Username or Password is invalid, only requirement is that each are at least one character long");
     }
+
+}

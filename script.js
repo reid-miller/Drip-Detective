@@ -97,9 +97,14 @@ var firebaseConfig = {
             console.error("Error adding document: ", error);
         });
         
-    }
-
-  console.log(username);
-  console.log(password);
-  
+    } 
   };
+
+function login() {
+    db.collection("users").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            console.log(`${doc.id} => ${doc.data()}`);
+        });
+    });
+    
+    }

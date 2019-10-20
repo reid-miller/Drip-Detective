@@ -48,5 +48,28 @@
     <!-- Include all compiled plugins (below), or include individual files as needed --> 
     <script src="../js/popper.min.js"></script> 
     <script src="../js/bootstrap-4.3.1.js"></script>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyC2hoBM7RmOif8VFLw0mnY0lMtpO9teeS4",
+    authDomain: "drip-detective.firebaseapp.com",
+    databaseURL: "https://drip-detective.firebaseio.com",
+    projectId: "drip-detective",
+    storageBucket: "drip-detective.appspot.com",
+    messagingSenderId: "678865921320",
+    appId: "1:678865921320:web:292da79a637ce2492d9c1d",
+    measurementId: "G-0C43H4S07S"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
   </body>
 </html>

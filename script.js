@@ -28,7 +28,7 @@ function update() {
         add();
         document.getElementById("timer").innerHTML = pad(minutes) + ":" + pad(seconds);
     } else if (timeStarter == 2){
-        document.getElementById("start-stop").style.visibility = 'hidden';
+        document.getElementById("timer-content").style.display = "none";
         statistics();
     }
 }
@@ -47,6 +47,8 @@ function pad(n) {
 }
 
 function statistics() {
+    document.getElementById("stats-page").style.display = "";
+    quipDisplay();
     var totalGal = ((minutes * 60) + seconds) * galPerSec;
     document.getElementById("stat-timer").innerHTML = pad(minutes) + ":" + pad(seconds);
     document.getElementById("num-gallons").innerHTML = totalGal.toFixed(2);
@@ -54,8 +56,33 @@ function statistics() {
     document.getElementById("total-bill").innerHTML = (totalGal * dollarPerGal * 30).toFixed(2);
 }
 
+function quipDisplay() {
+    if (minutes < 1) {
+        document.getElementById("quips").innerHTML = "Wow! That must be a record, good job!"
+    } else if (minutes < 8) {
+        document.getElementById("quips").innerHTML = "Nice shower time, you're under the national average. Way to save water!"
+    } else if (minutes < 12) {
+        document.getElementById("quips").innerHTML = "Slightly above the average but you're still doing well! Check your impact below."
+    } else if (minutes < 16) {
+        document.getElementById("quips").innerHTML = "Does it really take you that long to wash your hair? Check your impact below."
+    } else if (minutes > 16) {
+        var navyShower = "Navy shower";
+        navyShowerLink = window.open('https://en.wikipedia.org/wiki/Navy_shower', '_blank');
+        document.getElementById("quips").innerHTML = "Have you ever heard of a " + navyShowerLink + "? Check your impact below."
+    }
+}
+
+function addMinute() {
+    minutes += 1;
+}
+function addTenSeconds() {
+    seconds += 10;
+}
+
+
 function loginComplete() {
-    //Do stuff
+    document.getElementById("create-account").style.display = "none";
+    document.getElementById("timer-content").style.display = "";
 }
 
 

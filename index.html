@@ -32,20 +32,23 @@
                   Password: <input id="password" type="password" name="Password" value="">
                   <br> 
                   <br>                 
-                  <div><button onclick="login()">Login</button> &nbsp;&nbsp; <button onclick="createAccount()">Create Account</button></div>
+                  <div><button onclick="loginComplete()">Test Login</button><button onclick="login()">Login</button> &nbsp;&nbsp; <button onclick="createAccount()">Create Account</button></div>
                 </div>
               </div>
 		    
                <!-- Content for the timer -->
-				     <div id="timer-content" style="display:">
+				     <div id="timer-content" style="display:none">
                 <p class="text-center">See how much water you are wasting compared to your roomates!</p>
                 <p><h2 id="timer" class="text-center">00:00</h2><br></p>
                 <p id="start-stop" class="text-center"><a onclick="timeButton()" class="btn btn-primary btn-lg" href="#" role="button" title="Start Shower">Start Shower!</a> </p>
+                <p id="minute-add" class="text-center"><a onclick="addMinute()" class="btn btn-primary btn-lg" href="#" role="button">Add minute</a> </p>
+                <p id="seconds-add" class="text-center"><a onclick="addTenSeconds()" class="btn btn-primary btn-lg" href="#" role="button">Add 10 seconds</a> </p>
               </div>
          
               <!-- Content for after the timer -->
-              <div id="stats-page">
+              <div id="stats-page" style="display:none">
                  <p><h2 id="stat-timer" class="text-center">00:00</h2><br></p>
+                 <div class="text-center" id="quips"><p>string</p></div>
                  <p>Gallons of water used: <span id="num-gallons">0</span> gallons</p>
                  <p>Impact on water bill: $<span id="bill-impact">0</span></p>
                  <p>Estimated water bill consistent shower time: $<span id="total-bill">0</span></p>

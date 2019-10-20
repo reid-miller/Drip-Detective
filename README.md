@@ -1,2 +1,2 @@
-# verbose-octo-computing-machine
+# Drip Detective
 Madhacks 2019 Project

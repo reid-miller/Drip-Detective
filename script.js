@@ -78,8 +78,8 @@ var firebaseConfig = {
   function createAccount(){
 
     //Get username and password
-    var username = document.getElementById("username").value.toLowerCase().trim; // Not case senstive
-    var password = document.getElementById("password").value.trim;
+    var username = document.getElementById("username").value.toLowerCase().trim(); // Not case senstive
+    var password = document.getElementById("password").value.trim();
   
     //Check if username and password is valid (at least one char each) and username is not in use
     if(username.length > 0 && password.length > 0) {

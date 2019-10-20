@@ -31,9 +31,8 @@ function update() {
     } else if (timeStarter == 2){
         clearInterval(refreshInterval);
         document.getElementById("timer-content").style.display = "none";
-        statistics();
         saveTime();
-        getAverageShowerTime();
+        statistics();
     }
 }
 
@@ -182,6 +181,8 @@ function saveTime() {
     docRef.update({
     totalShowerTimer: firebase.firestore.FieldValue.increment((minutes * 60) + seconds),
     totalShowers: firebase.firestore.FieldValue.increment(1)
+    }).then(function() {
+        getAverageShowerTime();
     });
 }
 
@@ -194,8 +195,6 @@ function saveTime() {
 
 function getAverageShowerTime() {
     
-    //Get input
-    var otherUsername = document.getElementById("compare-input").innerText;
 
     //docRef = db.collection("users").doc(username);
 
@@ -206,6 +205,7 @@ function getAverageShowerTime() {
             //Check if password is correct
             totalTime = doc.data().totalShowerTimer;
             totalShowers = doc.data().totalShowers;
+            alert(totalTime + "**" + totalShowers);
            
         } else {
             // doc.data() will be undefined in this case
@@ -229,6 +229,8 @@ function getAverageShowerTime() {
 //With the gets from the database not loading instanly it's usefull to just call another method once it;s done loading 
 function compareShowerTimes() {
 
+    //Get input
+    var otherUsername = document.getElementById("compare-input").innerText;
     username = otherUsername;
 
     docRef.get().then(function(doc) {
@@ -255,5 +257,6 @@ function displayComparison() {
 
 function displayStats() {
     console.log(totalTime);
-    document.getElementById("average-time").innerText = Math.round((totalTime/totalShowers)/60) + ":" + ((totalTime/totalShowers) % 60);
+    document.getElementById("average-time").innerText = Math.round((totalTime/totalShowers)/60) + ":" + (Math.round((totalTime/totalShowers)) % 60);
+    document.getElementById("total-usage").innerText = (totalTime * 2.1).toFixed(2);
 }

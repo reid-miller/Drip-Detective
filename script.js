@@ -17,14 +17,16 @@ function timeButton() {
 }
 
 function timer() {
-   if (timeStarter == 1) {
-        setInterval(update, 1000);
-   }
+    var refreshInterval = setInterval(update, 1000);
 }
 
 function update() {
-    add();
-    document.getElementById("timer").innerHTML = minutes + ":" + seconds;
+    if (timeStarter == 1) {
+        add();
+        document.getElementById("timer").innerHTML = pad(minutes) + ":" + pad(seconds);
+    } else if (timeStarter == 2){
+        document.getElementById("start-stop").style.visibility = 'hidden';
+    }
 }
 
 function add() {
@@ -34,4 +36,8 @@ function add() {
     } else {
         seconds = seconds + 1;
     }
+}
+
+function pad(n) {
+    return (n < 10) ? ("0" + n) : n;
 }

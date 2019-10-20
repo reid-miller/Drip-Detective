@@ -30,6 +30,7 @@ function update() {
     } else if (timeStarter == 2){
         document.getElementById("timer-content").style.display = "none";
         statistics();
+        saveTime();
     }
 }
 
@@ -167,4 +168,14 @@ function login() {
         alert("Username or Password is invalid, only requirement is that each are at least one character long");
     }
 
+}
+
+function saveTime() {
+    var userRef = db.collection("users").doc(username);
+
+    // Atomically increment the total time by the current shower time and the number of showers.
+    userRef.update({
+    totalShowerTimer: firebase.firestore.FieldValue.increment((minutes * 60) + seconds),
+    totalShowers: firebase.firestore.FieldValue.increment(1)
+    });
 }

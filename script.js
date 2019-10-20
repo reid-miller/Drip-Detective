@@ -184,14 +184,18 @@ function saveTime() {
     });
 }
 
-function compareShowerTimes() {
-    
-    alert("Hello");
 
+//Used for comaprison methods
     var otherTotalTime;
     var otherTotalShowers;
     var totalTime;
     var totalShowers;
+
+function compareShowerTimes() {
+    
+    alert("Hello");
+
+    
 
     //Get input
     var otherUsername = document.getElementById("compare-input").innerText;
@@ -203,7 +207,6 @@ function compareShowerTimes() {
         //Check if username is valid
         if (doc.exists) {
             //Check if password is correct
-            alert(doc.data().totalShowerTimer);
             totalTime = doc.data().totalShowerTimer;
             totalShowers = doc.data().totalShowers;
            
@@ -211,14 +214,24 @@ function compareShowerTimes() {
             // doc.data() will be undefined in this case
             alert("Username does not exist!")
         }
+
+        username = otherUsername;
+        
+    }).then(function() {
+        compareShowerTimesHelper();       
     }).catch(function(error) {
         console.log("Error getting document:", error);
     });
 
-    //Get data on otherUsername
-
-    username = otherUsername;
     
+    
+    
+
+}
+
+//With the gets from the database not loading instanly it's usefull to just call another method once it;s done loading 
+function compareShowerTimesHelper() {
+
     docRef.get().then(function(doc) {
         //Check if username is valid
         if (doc.exists) {
@@ -230,10 +243,11 @@ function compareShowerTimes() {
             // doc.data() will be undefined in this case
             alert("Username does not exist!")
         }
+
+        alert("Here is some more stuff: " + otherTotalTime + "" + otherTotalShowers + "" + totalShowers + "" + totalTime);
     }).catch(function(error) {
         console.log("Error getting document:", error);
     });
     
-    alert(otherTotalTime + "" + otherTotalShowers + "" + totalShowers + "" + totalTime);
-
+    
 }

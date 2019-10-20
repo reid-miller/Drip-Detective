@@ -33,6 +33,7 @@ function update() {
         document.getElementById("timer-content").style.display = "none";
         statistics();
         saveTime();
+        getAverageShowerTime();
     }
 }
 
@@ -191,7 +192,7 @@ function saveTime() {
     var totalTime;
     var totalShowers;
 
-function compareShowerTimes() {
+function getAverageShowerTime() {
     
     //Get input
     var otherUsername = document.getElementById("compare-input").innerText;
@@ -211,10 +212,10 @@ function compareShowerTimes() {
             alert("Username does not exist!")
         }
 
-        username = otherUsername;
         
-    }).then(function() {
-        compareShowerTimesHelper();       
+        
+    }).then(function() { 
+        displayStats();  
     }).catch(function(error) {
         console.log("Error getting document:", error);
     });
@@ -226,7 +227,9 @@ function compareShowerTimes() {
 }
 
 //With the gets from the database not loading instanly it's usefull to just call another method once it;s done loading 
-function compareShowerTimesHelper() {
+function compareShowerTimes() {
+
+    username = otherUsername;
 
     docRef.get().then(function(doc) {
         //Check if username is valid
@@ -248,4 +251,9 @@ function compareShowerTimesHelper() {
 
 function displayComparison() {
     
+}
+
+function displayStats() {
+    console.log(totalTime);
+    document.getElementById("average-time").innerText = Math.round((totalTime/totalShowers)/60) + ":" + ((totalTime/totalShowers) % 60);
 }

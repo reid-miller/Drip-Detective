@@ -72,13 +72,6 @@ var firebaseConfig = {
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
-
-// Initialize Cloud Firestore through Firebase
-firebase.initializeApp({
-    apiKey: "AIzaSyC2hoBM7RmOif8VFLw0mnY0lMtpO9teeS4",
-    authDomain: "drip-detective.firebaseapp.com",
-    projectId: "drip-detective"
-  });
   
   var db = firebase.firestore();
 

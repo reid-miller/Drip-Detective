@@ -193,10 +193,6 @@ function saveTime() {
 
 function compareShowerTimes() {
     
-    alert("Hello");
-
-    
-
     //Get input
     var otherUsername = document.getElementById("compare-input").innerText;
 
@@ -243,11 +239,13 @@ function compareShowerTimesHelper() {
             // doc.data() will be undefined in this case
             alert("Username does not exist!")
         }
-
+        displayComparison();
         alert("Here is some more stuff: " + otherTotalTime + "" + otherTotalShowers + "" + totalShowers + "" + totalTime);
     }).catch(function(error) {
         console.log("Error getting document:", error);
-    });
-    
+    }); 
+}
+
+function displayComparison() {
     
 }

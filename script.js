@@ -117,27 +117,21 @@ var firebaseConfig = {
   
     //Check if username and password is valid (at least one char each) and username is not in use
     if(username.length > 0 && password.length > 0) {
-        // Check if username is in use
-        db.collection("users").get().then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                if(doc.id == username) {
-                    usernameTaken = true;
-                }
-            });
-        });
-  
-        //Add user to database if user name is not taken
-        if(usernameTaken == true) {
-            alert("Sorry username is taken")
-        } else {
-        db.collection("users").doc("" + username).set({           
-            Password: "" + password
+        var docRef = db.collection("users").doc(username);
+
+        docRef.get().then(function(doc) {
+            //Check if username exists
+            if (doc.exists) {
+                alert("Username is already in use!")
+            } else {
+                db.collection("users").doc("" + username).set({           
+                    Password: "" + password
+                });
+                loginComplete(); // Lets us know that user succesfully logged in
+            }
         }).catch(function(error) {
-            console.error("Error adding document: ", error);
-        });
-        loginComplete(); // Lets us know that user succesfully logged in
-    }
-        
+            console.log("Error getting document:", error);
+        });    
     } else {
         alert("Username or Password is invalid, only requirement is that each are at least one character long");
     }

@@ -25,15 +25,19 @@
             <div class="col-12">
               <h1 class="text-center">Drip Detective</h1>
               <!-- Content for the timer -->
-				     <div id="timer-content" style="display: none">
+				     <div id="timer-content" style="display:none">
                <p class="text-center">See how much water you are wasting compared to your roomates!</p>
-               <p><h2 id="timer" class="text-center">0:00</h2><br></p>
+               <p><h2 id="timer" class="text-center">00:00</h2><br></p>
                <p id="start-stop" class="text-center"><a onclick="timeButton()" class="btn btn-primary btn-lg" href="#" role="button" title="Start Shower">Start Shower!</a> </p>
 				     </div>
 			  
 			  	   <!-- Content for after the timer -->
 			  	   <div id="stats-page">
-					
+                <p><h2 id="timer" class="text-center">00:00</h2><br></p>
+                <p>Gallons of water used: <span id="num-gallons">0</span> gallons</p>
+                <p>Impact on average water bill: $<span id="average-bill">0</span></p>
+                <p>World shower time average: 8.2 minutes</p>
+                <p>Your average shower time: <span id="average-bill">0 minutes</span></p>
 				     </div> 
             </div>
           </div>

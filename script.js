@@ -4,6 +4,7 @@ var seconds = 00;
 var i = 0;
 var galPerSec = .035;
 var dollarPerGal = .03;
+var refreshInterval;
 
 var timeStarter = 0; // 0 means timer hasn't started 
                     // 1 means timer has been pressed and is running
@@ -20,7 +21,7 @@ function timeButton() {
 }
 
 function timer() {
-    var refreshInterval = setInterval(update, 1000);
+    refreshInterval = setInterval(update, 1000);
 }
 
 function update() {
@@ -28,6 +29,7 @@ function update() {
         add();
         document.getElementById("timer").innerHTML = pad(minutes) + ":" + pad(seconds);
     } else if (timeStarter == 2){
+        clearInterval(refreshInterval);
         document.getElementById("timer-content").style.display = "none";
         statistics();
         saveTime();
@@ -89,7 +91,6 @@ function loginComplete() {
 
 //Firebase and log in stuff
 
-
 // Your web app's Firebase configuration
 var firebaseConfig = {
     apiKey: "AIzaSyC2hoBM7RmOif8VFLw0mnY0lMtpO9teeS4",
@@ -106,6 +107,7 @@ var firebaseConfig = {
   firebase.analytics();
   
   var db = firebase.firestore();
+  var docRef;
 
   // Create an account
   function createAccount(){
@@ -126,7 +128,9 @@ var firebaseConfig = {
                 alert("Username is already in use!")
             } else {
                 db.collection("users").doc("" + username).set({           
-                    Password: "" + password
+                    Password: "" + password,
+                    totalShowerTimer: 0,
+                    totalShowers: 0
                 });
                 loginComplete(); // Lets us know that user succesfully logged in
             }
@@ -146,7 +150,7 @@ function login() {
     //Check if username and password is valid (at least one char each) and username is not in use
     if(username.length > 0 && password.length > 0) {
        
-        var docRef = db.collection("users").doc(username);
+        docRef = db.collection("users").doc(username);
 
         docRef.get().then(function(doc) {
             //Check if username is valid
@@ -171,11 +175,14 @@ function login() {
 }
 
 function saveTime() {
-    var userRef = db.collection("users").doc(username);
-
+    
     // Atomically increment the total time by the current shower time and the number of showers.
-    userRef.update({
+    docRef.update({
     totalShowerTimer: firebase.firestore.FieldValue.increment((minutes * 60) + seconds),
     totalShowers: firebase.firestore.FieldValue.increment(1)
     });
+}
+
+function compareShowerAverages() {
+    
 }

@@ -24,6 +24,21 @@
           <div class="row">
             <div class="col-12">
               <h1 class="text-center">Drip Detective</h1>
+		    
+	      <!-- Content for the log in screen -->
+              <div class="text-center" id="login-content">
+                <br>              
+                <!-- Create account page -->
+                <div id="create-account">
+                    <p><strong>Account info is stored on publicly accessable database</strong></p>
+                  Username: <input id="username" type="text" name="Username" value=""><br>
+                  Password: <input id="password" type="password" name="Password" value="">
+                  <br> 
+                  <br>                 
+                  <div><button>Login</button> &nbsp;&nbsp; <button onclick="createAccount()">Create Account</button></div>
+                </div>
+              </div>
+		    
               <!-- Content for the timer -->
 				     <div id="timer-content" style="display:none">
                <p class="text-center">See how much water you are wasting compared to your roomates!</p>
@@ -63,9 +78,10 @@
   <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-app.js"></script>
 
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-analytics.js"></script>
+<!-- Insert this script at the bottom of the HTML, but before you use any Firebase services -->
+
+    <!-- Add the entire Firebase JavaScript SDK -->
+    <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase.js"></script>
 
 <script>
   // Your web app's Firebase configuration
@@ -83,5 +99,9 @@
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
 </script>
+
+<script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-firestore.js"></script>
+
   </body>
 </html>

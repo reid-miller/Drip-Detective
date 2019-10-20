@@ -7,6 +7,7 @@ btn.innerHTML = "Stop Timer";
 
 function startTime() {
     document.getElementById("timer").innerHTML = minutes + ":" + seconds;
+    document.getElementById("start-shower").childNodes[0].innerHTML = "Stop Timer";
 }
 
 function timer() {

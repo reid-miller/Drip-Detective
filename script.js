@@ -205,7 +205,6 @@ function getAverageShowerTime() {
             //Check if password is correct
             totalTime = doc.data().totalShowerTimer;
             totalShowers = doc.data().totalShowers;
-            alert(totalTime + "**" + totalShowers);
            
         } else {
             // doc.data() will be undefined in this case
@@ -245,7 +244,6 @@ function compareShowerTimes() {
             alert("Username does not exist!")
         }
         displayComparison();
-        alert("Here is some more stuff: " + otherTotalTime + "" + otherTotalShowers + "" + totalShowers + "" + totalTime);
     }).catch(function(error) {
         console.log("Error getting document:", error);
     }); 
@@ -256,7 +254,6 @@ function displayComparison() {
 }
 
 function displayStats() {
-    console.log(totalTime);
     document.getElementById("average-time").innerText = Math.round((totalTime/totalShowers)/60) + ":" + (Math.round((totalTime/totalShowers)) % 60);
     document.getElementById("total-usage").innerText = (totalTime * 2.1).toFixed(2);
 }

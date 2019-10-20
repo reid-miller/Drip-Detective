@@ -57,6 +57,22 @@ function statistics() {
 
 //Firebase and log in stuff
 
+
+// Your web app's Firebase configuration
+var firebaseConfig = {
+    apiKey: "AIzaSyC2hoBM7RmOif8VFLw0mnY0lMtpO9teeS4",
+    authDomain: "drip-detective.firebaseapp.com",
+    databaseURL: "https://drip-detective.firebaseio.com",
+    projectId: "drip-detective",
+    storageBucket: "drip-detective.appspot.com",
+    messagingSenderId: "678865921320",
+    appId: "1:678865921320:web:292da79a637ce2492d9c1d",
+    measurementId: "G-0C43H4S07S"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+
 // Initialize Cloud Firestore through Firebase
 firebase.initializeApp({
     apiKey: "AIzaSyC2hoBM7RmOif8VFLw0mnY0lMtpO9teeS4",

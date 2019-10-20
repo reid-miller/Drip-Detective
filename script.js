@@ -67,7 +67,7 @@ function quipDisplay() {
         document.getElementById("quips").innerHTML = "Does it really take you that long to wash your hair? Check your impact below."
     } else if (minutes > 16) {
         var navyShower = "Navy shower";
-        navyShowerLink = window.open('https://en.wikipedia.org/wiki/Navy_shower', '_blank');
+        navyShowerLink = navyShower.link("https://en.wikipedia.org/wiki/Navy_shower")
         document.getElementById("quips").innerHTML = "Have you ever heard of a " + navyShowerLink + "? Check your impact below."
     }
 }

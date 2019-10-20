@@ -34,7 +34,7 @@
                   Password: <input id="password" type="password" name="Password" value="">
                   <br> 
                   <br>                 
-                  <div><button onclick="login">Login</button> &nbsp;&nbsp; <button onclick="createAccount()">Create Account</button></div>
+                  <div><button onclick="login()">Login</button> &nbsp;&nbsp; <button onclick="createAccount()">Create Account</button></div>
                 </div>
               </div>
 		    
@@ -67,7 +67,7 @@
        <div class="container">
          <div class="row">
            <div class="col-12">
-             <p>Created by Mark Truttmann and Reid Miller<br>Copyright © Drip Detective™. All rights reserved.</p>
+            <p style="color:white;">Created by Mark Truttmann and Reid Miller<br>Copyright © Drip Detective™. All rights reserved.</p>
            </div>
         </div>
       </div>
@@ -92,4 +92,21 @@
   <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-firestore.js"></script>
   <script src="script.js"></script>
   </body>
+
+  <style>/* Set a background image by replacing the URL below */
+      body {
+        background: url('https://thumbs-prod.si-cdn.com/7szLz0RWJEOuSEEvEji-HMUaS5o=/fit-in/1600x0/https://public-media.si-cdn.com/filer/bb/76/bb76e999-6d99-4432-9233-c8b320d42de0/1280px-shifengwaterfall_002.jpg') no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+        -o-background-size: cover;
+      }
+      
+      .jumbotron {
+        opacity: .95;
+      }
+      .container {
+        opacity: 1;
+      }
+      </style>
 </html>

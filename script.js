@@ -53,3 +53,44 @@ function statistics() {
     document.getElementById("bill-impact").innerHTML = (totalGal * dollarPerGal).toFixed(2);
     document.getElementById("total-bill").innerHTML = (totalGal * dollarPerGal * 30).toFixed(2);
 }
+
+
+//Firebase and log in stuff
+
+// Initialize Cloud Firestore through Firebase
+firebase.initializeApp({
+    apiKey: '### FIREBASE API KEY ###',
+    authDomain: '### FIREBASE AUTH DOMAIN ###',
+    projectId: '### CLOUD FIRESTORE PROJECT ID ###'
+  });
+  
+  var db = firebase.firestore();
+
+  function createAccount(){
+
+    //Get username and password
+    var username = document.getElementById("username").value.toLowerCase().trim; // Not case senstive
+    var password = document.getElementById("password").value.trim;
+  
+    //Check if username and password is valid (at least one char each) and username is not in use
+    if(username.length > 0 && password.length > 0) {
+        // TODO Check if username is in use
+  
+        //Add user to database
+        db.collection("users").add({
+            Username: "" + username,
+            Password: "" + password,
+        })
+        .then(function(docRef) {
+            console.log("Document written with ID: ", docRef.id);
+        })
+        .catch(function(error) {
+            console.error("Error adding document: ", error);
+        });
+        
+    }
+
+  console.log(username);
+  console.log(password);
+  
+  };

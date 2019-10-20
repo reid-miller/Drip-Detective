@@ -28,8 +28,8 @@
                 <!-- Create account page -->
                 <div id="create-account">
                     <p><strong>Account info is stored on publicly accessable database</strong></p>
-                  Username: <input id="username" type="text" name="Username" value=""><br>
-                  Password: <input id="password" type="password" name="Password" value="">
+                  Username: <input id="username" type="text" name="Username" placeholder="Username" value=""><br>
+                  Password: <input id="password" type="password" name="Password" placeholder="Password" value="">
                   <br> 
                   <br>                 
                   <button onclick="login()">Login</button> &nbsp;&nbsp; <button onclick="createAccount()">Create Account</button></div>
@@ -55,7 +55,11 @@
                  <p>Your average shower time: <span id="average-time">0</span> minutes</p>
                  <p>World shower time average: 8.2 minutes</p>
                  <p>Total water usage: <span id="total-usage">0</span> gallons</p>
-                 <p class="text-center" class="align-bottom">Numbers based on averages</p>
+                 <p class="align-bottom">Numbers based on averages*</p>
+                 <div class="text-center">
+                 Compare your shower stats: <input id="compare-input" type="text" name="otherUsername" placeholder="Someone's Username" value="">
+                 <button onclick="compareShowerTimes()">Compare!</button> &nbsp; <button onclick="randomUsername()">Random Username</button>
+                </div>
               </div> 
          </div>
        </div>

@@ -120,7 +120,7 @@ var firebaseConfig = {
   
     //Check if username and password is valid (at least one char each) and username is not in use
     if(username.length > 0 && password.length > 0) {
-        var docRef = db.collection("users").doc(username);
+        docRef = db.collection("users").doc(username);
 
         docRef.get().then(function(doc) {
             //Check if username exists
@@ -149,7 +149,6 @@ function login() {
   
     //Check if username and password is valid (at least one char each) and username is not in use
     if(username.length > 0 && password.length > 0) {
-       
         docRef = db.collection("users").doc(username);
 
         docRef.get().then(function(doc) {
@@ -177,12 +176,64 @@ function login() {
 function saveTime() {
     
     // Atomically increment the total time by the current shower time and the number of showers.
+    //docRef = db.collection("users").doc(username);
+
     docRef.update({
     totalShowerTimer: firebase.firestore.FieldValue.increment((minutes * 60) + seconds),
     totalShowers: firebase.firestore.FieldValue.increment(1)
     });
 }
 
-function compareShowerAverages() {
+function compareShowerTimes() {
     
+    alert("Hello");
+
+    var otherTotalTime;
+    var otherTotalShowers;
+    var totalTime;
+    var totalShowers;
+
+    //Get input
+    var otherUsername = document.getElementById("compare-input").innerText;
+
+    //docRef = db.collection("users").doc(username);
+
+    //Get data on you
+    docRef.get().then(function(doc) {
+        //Check if username is valid
+        if (doc.exists) {
+            //Check if password is correct
+            alert(doc.data().totalShowerTimer);
+            totalTime = doc.data().totalShowerTimer;
+            totalShowers = doc.data().totalShowers;
+           
+        } else {
+            // doc.data() will be undefined in this case
+            alert("Username does not exist!")
+        }
+    }).catch(function(error) {
+        console.log("Error getting document:", error);
+    });
+
+    //Get data on otherUsername
+
+    username = otherUsername;
+    
+    docRef.get().then(function(doc) {
+        //Check if username is valid
+        if (doc.exists) {
+            //Check if password is correct
+            otherTotalTime = doc.data().totalShowerTimer;
+            otherTotalShowers = doc.data().totalShowers;
+           
+        } else {
+            // doc.data() will be undefined in this case
+            alert("Username does not exist!")
+        }
+    }).catch(function(error) {
+        console.log("Error getting document:", error);
+    });
+    
+    alert(otherTotalTime + "" + otherTotalShowers + "" + totalShowers + "" + totalTime);
+
 }

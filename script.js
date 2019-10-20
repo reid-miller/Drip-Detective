@@ -54,6 +54,10 @@ function statistics() {
     document.getElementById("total-bill").innerHTML = (totalGal * dollarPerGal * 30).toFixed(2);
 }
 
+function loginComplete() {
+    //Do stuff
+}
+
 
 //Firebase and log in stuff
 
@@ -77,34 +81,42 @@ var firebaseConfig = {
 
   function createAccount(){
 
+    var usernameTaken = false; // Will keep track if username is already taken
+
     //Get username and password
     var username = document.getElementById("username").value.toLowerCase().trim(); // Not case senstive
     var password = document.getElementById("password").value.trim();
   
     //Check if username and password is valid (at least one char each) and username is not in use
     if(username.length > 0 && password.length > 0) {
-        // TODO Check if username is in use
+        // Check if username is in use
+        db.collection("users").get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                if(doc.id == username) {
+                    usernameTaken = true;
+                }
+            });
+        });
   
-        //Add user to database
-        db.collection("users").add({
-            Username: "" + username,
-            Password: "" + password,
-        })
-        .then(function(docRef) {
-            console.log("Document written with ID: ", docRef.id);
-        })
-        .catch(function(error) {
+        //Add user to database if user name is not taken
+        if(usernameTaken == true) {
+            alert("Sorry username is ")
+        } else {
+
+        
+        db.collection("users").doc("" + username).set({           
+            Password: "" + password
+        }).catch(function(error) {
             console.error("Error adding document: ", error);
         });
+        loginComplete();
+    }
         
     } 
   };
 
 function login() {
-    db.collection("users").get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            console.log(`${doc.id} => ${doc.data()}`);
-        });
-    });
     
+    
+    loginComplete();
     }
